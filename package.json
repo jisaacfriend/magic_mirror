@@ -1,0 +1,25 @@
+{
+  "name": "magic_mirror",
+  "version": "0.0.1",
+  "description": "Another Magic Mirror project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jisaacfriend/magic_mirror.git"
+  },
+  "keywords": [
+    "Magic",
+    "Mirror",
+    "Smart",
+    "Mirror"
+  ],
+  "author": "J. Isaac Friend",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jisaacfriend/magic_mirror/issues"
+  },
+  "homepage": "https://github.com/jisaacfriend/magic_mirror"
+}
