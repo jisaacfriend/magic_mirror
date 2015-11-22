@@ -1,0 +1,75 @@
+{
+   "results" : [
+      {
+         "address_components" : [
+            {
+               "long_name" : "1945",
+               "short_name" : "1945",
+               "types" : [ "street_number" ]
+            },
+            {
+               "long_name" : "South Pickwick Avenue",
+               "short_name" : "S Pickwick Ave",
+               "types" : [ "route" ]
+            },
+            {
+               "long_name" : "Springfield",
+               "short_name" : "Springfield",
+               "types" : [ "locality", "political" ]
+            },
+            {
+               "long_name" : "Springfield Township",
+               "short_name" : "Springfield Township",
+               "types" : [ "administrative_area_level_3", "political" ]
+            },
+            {
+               "long_name" : "Greene County",
+               "short_name" : "Greene County",
+               "types" : [ "administrative_area_level_2", "political" ]
+            },
+            {
+               "long_name" : "Missouri",
+               "short_name" : "MO",
+               "types" : [ "administrative_area_level_1", "political" ]
+            },
+            {
+               "long_name" : "United States",
+               "short_name" : "US",
+               "types" : [ "country", "political" ]
+            },
+            {
+               "long_name" : "65804",
+               "short_name" : "65804",
+               "types" : [ "postal_code" ]
+            },
+            {
+               "long_name" : "2341",
+               "short_name" : "2341",
+               "types" : [ "postal_code_suffix" ]
+            }
+         ],
+         "formatted_address" : "1945 S Pickwick Ave, Springfield, MO 65804, USA",
+         "geometry" : {
+            "location" : {
+               "lat" : 37.178649,
+               "lng" : -93.270713
+            },
+            "location_type" : "ROOFTOP",
+            "viewport" : {
+               "northeast" : {
+                  "lat" : 37.1799979802915,
+                  "lng" : -93.2693640197085
+               },
+               "southwest" : {
+                  "lat" : 37.1773000197085,
+                  "lng" : -93.27206198029151
+               }
+            }
+         },
+         "partial_match" : true,
+         "place_id" : "ChIJndBhH0Vjz4cRiZJpfNX5I0A",
+         "types" : [ "street_address" ]
+      }
+   ],
+   "status" : "OK"
+}
