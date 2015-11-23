@@ -2,6 +2,7 @@
 <html ng-app="magicMirror">
 	<head>
 		<link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
+		<link rel="stylesheet" type="text/css" href="/assets/css/weather-icons.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script src="/app/app.js"></script>
@@ -18,16 +19,18 @@
 		<div ng-controller="MirrorWeather" ng-init="init()">
 			<div class="currentWeather">
 				<h3>Now</h3>
+				<i class="wi wi-forecast-io-{{ forecast.currently.icon }}"></i>
 				<span ng-bind="forecast.currently.apparentTemperature | temp"></span>
 				<span ng-bind="forecast.currently.summary"></span>
-				<span ng-if="day.precipProbability > 0"><strong>Precip: </strong><span ng-bind="day.precipProbablilty | percent"></span></span>
+				<span ng-if="forecast.currently.precipProbability > 0"><strong>Precip: </strong><span ng-bind="forecast.currently.precipProbability | percent"></span></span>
 			</div>
 			<div class="weeklyForecast">
 				<div ng-repeat="day in forecast.daily.data">
 					<h2 ng-bind="day.time * 1000 | date: 'EEE'"></h2>
+					<i class="wi wi-forecast-io-{{ day.icon }}"></i>
 					<div><strong>H: </strong><span ng-bind="day.temperatureMax | temp: 0"></span></div>
 					<div><strong>L: </strong><span ng-bind="day.temperatureMin | temp: 0"></span></div>
-					<div ng-if="day.precipProbability > 0"><strong>Precip: </strong><span ng-bind="day.precipProbablilty | percent"></span></div>
+					<div ng-if="day.precipProbability > 0"><strong>Precip: </strong><span ng-bind="day.precipProbability | percent"></span></div>
 				</div>
 			</div>
 		</div>
