@@ -60,6 +60,19 @@
 		};
 	});
 	
+	// The MirrorWeather controller
+	app.controller('MirrorWeather', ['$scope', 'WeatherFactory', function($scope, WeatherFactory) {
+		$scope.init = function() {
+			WeatherFactory.currentForecast(function(err, data) {
+				if(err) {
+					$scope.forecastError = err;
+				} else {
+					$scope.forecast = data;
+				}
+			});
+		};
+	}]);
+	
 	// Filter for temperature numbers to round off decimals and add "degree symbol" (\u00B0)
 	app.filter('temp', function($filter) {
 		return function(input, precision) {
@@ -78,18 +91,6 @@
 		};
 	});
 	
-	// The MirrorWeather controller
-	app.controller('MirrorWeather', ['$scope', 'WeatherFactory', function($scope, WeatherFactory) {
-		$scope.init = function() {
-			WeatherFactory.currentForecast(function(err, data) {
-				if(err) {
-					$scope.forecastError = err;
-				} else {
-					$scope.forecast = data;
-				}
-			});
-		};
-	}]);
 })();
 /*
 https://api.forecast.io/forecast/APIKEY/LATITUDE,LONGITUDE

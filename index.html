@@ -9,9 +9,9 @@
 	<body>
 		<!-- Date/Time Functionality -->
 		<div ng-controller="MirrorClock as clock">
-			<h2>{{ clock | date:'EEEE' }}</h2>
-			<h2>{{ clock | date:'MMMM d, y' }}</h2>
-			<h3>{{ clock | date:'h:mm:ss a' }}</h3>
+			<h2 ng-bind="clock | date:'EEEE'"></h2>
+			<h2 ng-bind="clock | date:'MMMM d, y'"></h2>
+			<h3 ng-bind="clock | date:'h:mm:ss a'"></h3>
 		</div>
 		
 		<!-- Weather Service Functionality -->
@@ -20,14 +20,14 @@
 				<h3>Now</h3>
 				<span ng-bind="forecast.currently.apparentTemperature | temp"></span>
 				<span ng-bind="forecast.currently.summary"></span>
-				<span ng-if="forecast.precipProbability > 0"><strong>Precipitation: </strong><span ng-bind="forecast.currently.precipProbablilty | percent"></span></span>
+				<span ng-if="day.precipProbability > 0"><strong>Precip: </strong><span ng-bind="day.precipProbablilty | percent"></span></span>
 			</div>
 			<div class="weeklyForecast">
 				<div ng-repeat="day in forecast.daily.data">
 					<h2 ng-bind="day.time * 1000 | date: 'EEE'"></h2>
-					<div><strong>H:</strong><span ng-bind="day.temperatureMax | temp: 0"></span></div>
-					<div><strong>L:</strong><span ng-bind="day.temperatureMin | temp: 0"></span></div>
-					<div ng-if="day.precipProbability > 0"><strong>Precipitation: </strong><span ng-bind="day.precipProbablilty | percent"></span></div>
+					<div><strong>H: </strong><span ng-bind="day.temperatureMax | temp: 0"></span></div>
+					<div><strong>L: </strong><span ng-bind="day.temperatureMin | temp: 0"></span></div>
+					<div ng-if="day.precipProbability > 0"><strong>Precip: </strong><span ng-bind="day.precipProbablilty | percent"></span></div>
 				</div>
 			</div>
 		</div>
