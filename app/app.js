@@ -11,43 +11,6 @@
 		$interval(tick, 1000);
 	});
 	
-/*
-	// The Weather factory
-	app.factory('weatherServiceFactory', ['$http', '$q', function($http, $q){
-		var zip = 64109;
-		var lat = 37.178649;
-		var lng = -93.270713;
-		var forecastApiKey = '998d0913e97301f02e9ff58b8f97dc2f';
-		var gmapsApiKey = AIzaSyClw7Ga1DA3wmeKe-k2_PhsKkYgX6fqSYE;
-		function getWeather(lat, lng, forecastApiKey) {
-			var deferred = $q.defer();
-			$http.get('https://api.forecast.io/forecast/' + forecastApiKey + '/' + lat + ',' + lng)
-				.success(function(data){
-					deferred.resolve(data.query.results.channel);
-				})
-				.error(function(err){
-					console.log('Error retrieving weather.');
-					deferred.reject(err);
-				});
-			return deferred.promise;
-		}
-		return {
-			getWeather: getWeather
-		};
-	}]);
-	
-	// The Weather controller
-	app.controller('WeatherService', ['$scope', 'weatherServiceFactory', function($scope, weatherServiceFactory) {
-		function fetchWeather() {
-			weatherServiceFactory.getWeather().then(function(data) {
-				$scope.place = data;
-			});
-		}
-		
-		fetchWeather();
-	}]);
-*/
-
 	// The Weather Factory
 	app.factory('WeatherFactory', function($http, $interval) {
 		var apiKey = '998d0913e97301f02e9ff58b8f97dc2f';
@@ -55,11 +18,11 @@
 		var lat = 37.178649;
 		var lng = -93.270713;
 		var interval = 1000 * 60 * 15;  // 15 Minutes
-		var cachedForecatst;
+		var cachedForecast;
 		
 		// Poll forecast.io for data.  If successful store data and run callback function.  On error, log error in console and pass error to callback.  DECLARATION ONLY.  Not run automatically.
 		function pollForecastIO(callback) {
-			var url = ['https://api.forecast.io/forecast/', apiKey, '/', lat, ',', lon, '?callback=JSON_CALLBACK'].join('');
+			var url = ['https://api.forecast.io/forecast/', apiKey, '/', lat, ',', lng, '?callback=JSON_CALLBACK'].join('');
 			
 			$http.jsonp(url)
 				.success(function(data) {
@@ -114,6 +77,19 @@
 			return $filter('number')(input * 100, decimals) + '%';
 		};
 	});
+	
+	// The MirrorWeather controller
+	app.controller('MirrorWeather', ['$scope', 'WeatherFactory', function($scope, WeatherFactory) {
+		$scope.init = function() {
+			WeatherFactory.currentForecast(function(err, data) {
+				if(err) {
+					$scope.forecastError = err;
+				} else {
+					$scope.forecast = data;
+				}
+			});
+		};
+	}]);
 })();
 /*
 https://api.forecast.io/forecast/APIKEY/LATITUDE,LONGITUDE
