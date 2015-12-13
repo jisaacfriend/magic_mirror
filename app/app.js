@@ -11,6 +11,17 @@
 		$interval(tick, 1000);
 	});
 	
+	// The Random Welcome Message Controller
+	app.controller('WelcomeMessage', function($scope, $interval) {
+		var welcomeMessages = [
+			'It\'s going to be a great day... Right?',
+			'A day without sunshine is like, you know, night.',
+			'Please remember to fake water your fake plants!',
+			'Always borrow money from a pessimist.  He won\'t expect it back.',
+			''
+		];
+	});
+	
 	// The Weather Factory
 	app.factory('WeatherFactory', function($http, $interval) {
 		var apiKey = '998d0913e97301f02e9ff58b8f97dc2f';
