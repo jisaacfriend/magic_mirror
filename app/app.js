@@ -27,7 +27,6 @@
 		var interval = 1000 * 30;
 		var newQuote = function() {	
 			WelcomeMessageFactory.getQuoteList().success(function(data) {
-				console.log(data);
 				$scope.quote = data[Math.floor(Math.random()*data.length)];
 			});
 		}

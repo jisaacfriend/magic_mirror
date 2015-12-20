@@ -22,7 +22,7 @@ http.createServer(function(req, res){
 	var stats;
 	
 	try {
-		stats = fs.lstatSync(fileName)
+		stats = fs.lstatSync(fileName);
 	} catch(e) {
 		res.write(404, {'Content-type': 'text/plain'});
 		res.write('404 Not Found\n');
@@ -45,4 +45,4 @@ http.createServer(function(req, res){
 		res.write('500 Internal Error');
 		res.end();
 	}
-}).listen(80);
+}).listen(1337, '127.0.0.1');
