@@ -26,7 +26,7 @@
 					</div>
 					<div class="curret-precip">
 						<div class="text-left" ng-bind="forecast.currently.summary"></div>
-						<div ng-if="forecast.currently.precipProbability > 0"><strong>Precip: </strong><span ng-bind="forecast.currently.precipProbability | percent"></span></div>
+						<div ng-if="forecast.currently.precipProbability > 0"><strong>Precip: </strong><span ng-bind="forecast.currently.precipProbability | percent: 0"></span></div>
 					</div>
 				</div>
 				<hr>
@@ -37,7 +37,7 @@
 							<td class="text-center"><i class="wi wi-forecast-io-{{ day.icon }}"></i></td>
 							<td class="text-right" ng-bind="day.temperatureMax | temp: 0"></td>
 							<td class="text-right" ng-bind="day.temperatureMin | temp: 0"></td>
-							<td class="text-right" ng-bind="day.precipProbability | percent"></td>
+							<td class="text-right" ng-bind="day.precipProbability | percent: 0"></td>
 						</tr>
 					</table>
 				</div>
