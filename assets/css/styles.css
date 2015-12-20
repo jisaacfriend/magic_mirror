@@ -23,20 +23,93 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
-.left { float: left; }
-.right { float: right; }
+html { background: #fff; }
 
-.mirror-clock {
+.magic-mirror {
+	position: relative;
+	height: 1980px;
+	width: 1080px;
+	margin: 0 auto;
+	padding: 35px;
+	background: #000;
+	color: #fff;
 	font-family: "Yantramanav", sans-serif;
 }
-.mirror-clock h1, .mirror-clock h2, .mirror-clock h3, .mirror-clock h4, .mirror-clock h5, .mirror-clock h6 {
+
+.left { float: left; }
+.right { float: right; }
+.clear:before,
+.clear:after {
+	content: '';
+	display: table;
+}
+.clear:after {
+	clear: both;
+}
+
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+
+.mirror-clock {
+	width: 25%;
+}
+.mirror-clock h1, .mirror-clock h2, .mirror-clock h3, .mirror-clock h4, .mirror-clock h5, .mirror-clock h6,
+.mirror-weather h1, .mirror-weather h2, .mirror-weather h3, .mirror-weather h4, .mirror-weather h5, .mirror-weather h6 {
 	font-weight: 300;
 	margin: 0;
 	text-align: justify;
 }
-.mirror-clock h2 {
-	font-size: 3em;
+.mirror-clock h1, .mirror-clock h2, .mirror-clock h3, .mirror-clock h4, .mirror-clock h5, .mirror-clock h6 {
+	text-transform: uppercase;
 }
-.mirror-clock h3 {
-	font-size: 1.75em;
+.mirror-clock .time {
+	font-size: 3.3em;
+	line-height: 1;
+}
+.mirror-clock .day {
+	font-size: 2.5em;
+	letter-spacing: .15em;
+	line-height: 1;
+}
+.mirror-clock .date {
+	font-size: 1.85em;
+	line-height: 1.2;
+}
+
+.mirror-weather {
+	width: 20%;
+	font-family: "Yantramanav", sans-serif;
+}
+.mirror-weather .currentWeather .current-icon-temp {
+	line-height: 1;
+}
+.mirror-weather .currentWeather .current-icon-temp i {
+	font-size: 2.5em;
+}
+.mirror-weather .currentWeather .current-icon-temp span {
+	margin-left: 10px;
+	font-size: 3.5em;
+}
+.mirror-weather table {
+	width: 100%;
+}
+.mirror-weather table tr td {
+	padding: 5px 0;
+}
+
+.mirror-mid {
+	position: absolute;
+	top: 45%;
+	right: 35px;
+	left: 35px;
+	text-align: center;
+}
+.mirror-mid .quote {
+	font-size: 2em;
+	font-weight: 300;
+}
+.mirror-mid .author {
+	font-size: 1.5em;
+	font-weight: 300;
 }

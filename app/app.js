@@ -11,17 +11,30 @@
 		$interval(tick, 1000);
 	});
 	
-	// The Random Welcome Message Controller
-	app.controller('WelcomeMessage', function($scope, $interval) {
-		var welcomeMessages = [
-			'It\'s going to be a great day... Right?',
-			'A day without sunshine is like, you know, night.',
-			'Please remember to fake water your fake plants!',
-			'Always borrow money from a pessimist.  He won\'t expect it back.',
-			''
-		];
+	// The Random Welcome Message Factory
+	app.factory('WelcomeMessageFactory', function($http) {
+		var quoteList = {};
+		
+		quoteList.getQuoteList = function() {
+			return $http.get('/assets/js/quotes.json');
+		}
+		
+		return quoteList;
 	});
 	
+	// The Random Welcome Message Controller
+	app.controller('WelcomeMessage', ['$scope', '$interval', 'WelcomeMessageFactory', function($scope, $interval, WelcomeMessageFactory) {
+		var interval = 1000 * 30;
+		var newQuote = function() {	
+			WelcomeMessageFactory.getQuoteList().success(function(data) {
+				console.log(data);
+				$scope.quote = data[Math.floor(Math.random()*data.length)];
+			});
+		}
+		newQuote();
+		$interval(newQuote, interval);
+	}]);
+		
 	// The Weather Factory
 	app.factory('WeatherFactory', function($http, $interval) {
 		var apiKey = '998d0913e97301f02e9ff58b8f97dc2f';
@@ -82,6 +95,7 @@
 				}
 			});
 		};
+		$scope.limit = 5;
 	}]);
 	
 	// Filter for temperature numbers to round off decimals and add "degree symbol" (\u00B0)
@@ -91,7 +105,7 @@
 				precision = 1;
 			}
 			var numberFilter = $filter('number');
-			return numberFilter(input, precision) + '\u00B0';
+			return numberFilter(input, precision) + '\u00B0F';
 		};
 	});
 	

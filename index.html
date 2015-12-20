@@ -8,33 +8,47 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 		<script src="/app/app.js"></script>
 	</head>
-	<body>
-		<!-- Date/Time Functionality -->
-		<div class="mirror-clock left" ng-controller="MirrorClock as clock">
-			<h2 ng-bind="clock | date:'h:mm:ss a'"></h3>
-			<h3 ng-bind="clock | date:'EEEE'"></h2>
-			<h3 ng-bind="clock | date:'MMMM d, y'"></h2>
-		</div>
-		
-		<!-- Weather Service Functionality -->
-		<div class="right" ng-controller="MirrorWeather" ng-init="init()">
-			<div class="currentWeather">
-				<h3>Now</h3>
-				<i class="wi wi-forecast-io-{{ forecast.currently.icon }}"></i>
-				<span ng-bind="forecast.currently.apparentTemperature | temp"></span>
-				<span ng-bind="forecast.currently.summary"></span>
-				<span ng-if="forecast.currently.precipProbability > 0"><strong>Precip: </strong><span ng-bind="forecast.currently.precipProbability | percent"></span></span>
+	<body class="magic-mirror">
+		<div class="mirrro-upper clear">
+			<!-- Date/Time Functionality -->
+			<div class="mirror-clock left" ng-controller="MirrorClock as clock">
+				<h2 class="time" ng-bind="clock | date:'hh:mm:ss a'"></h3>
+				<h3 class="day" ng-bind="clock | date:'EEEE'"></h3>
+				<h3 class="date" ng-bind="clock | date:'MMMM d, y'"></h3>
 			</div>
-			<div class="weeklyForecast">
-				<div ng-repeat="day in forecast.daily.data">
-					<h2 ng-bind="day.time * 1000 | date: 'EEE'"></h2>
-					<i class="wi wi-forecast-io-{{ day.icon }}"></i>
-					<div><strong>H: </strong><span ng-bind="day.temperatureMax | temp: 0"></span></div>
-					<div><strong>L: </strong><span ng-bind="day.temperatureMin | temp: 0"></span></div>
-					<div ng-if="day.precipProbability > 0"><strong>Precip: </strong><span ng-bind="day.precipProbability | percent"></span></div>
+			
+			<!-- Weather Service Functionality -->
+			<div class="mirror-weather right" ng-controller="MirrorWeather" ng-init="init()">
+				<div class="currentWeather">
+					<div class="current-icon-temp">
+						<i class="wi wi-forecast-io-{{ forecast.currently.icon }}"></i>
+						<span ng-bind="forecast.currently.apparentTemperature | temp: 0"></span>
+					</div>
+					<div class="curret-precip">
+						<div class="text-left" ng-bind="forecast.currently.summary"></div>
+						<div ng-if="forecast.currently.precipProbability > 0"><strong>Precip: </strong><span ng-bind="forecast.currently.precipProbability | percent"></span></div>
+					</div>
+				</div>
+				<hr>
+				<div class="weeklyForecast">
+					<table border="0" cellpadding="0" cellspacing="0">
+						<tr ng-repeat="day in forecast.daily.data | limitTo:limit">
+							<td class="text-left" ng-bind="day.time * 1000 | date: 'EEE'"></td>
+							<td class="text-center"><i class="wi wi-forecast-io-{{ day.icon }}"></i></td>
+							<td class="text-right" ng-bind="day.temperatureMax | temp: 0"></td>
+							<td class="text-right" ng-bind="day.temperatureMin | temp: 0"></td>
+							<td class="text-right" ng-bind="day.precipProbability | percent"></td>
+						</tr>
+					</table>
 				</div>
 			</div>
 		</div>
-		
+		<div class="mirror-mid clear">
+			<div class="welcome-message" ng-controller="WelcomeMessage as message" ng-init="init()">
+				<span class="quote" ng-bind="quote.text"></span>
+				<br>
+				<span class="author">- </span><span class="author" ng-bind="quote.author"></span>
+			</div>
+		</div>
 	</body>
 </html>
